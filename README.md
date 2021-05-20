@@ -4,7 +4,7 @@ I often find myself opening VS Code to manipulate text. I usually paste the text
 
 Since I don't always haave access to VS Code (and it is kind of overkill to open it each time), I wanted to make a browser-based version of just the text editor that supports the functionality I need to make these text manipulations.
 
-Most of the functionality comes from [CodeMirror 6](https://codemirror.net/) with some tweaks made for my use case.
+Most of the functionality comes from [CodeMirror 6](https://codemirror.net/) with some tweaks made for my use case. The editor is wrapped in a Svelte project for potential future improvements.
 
 ## Development
 
