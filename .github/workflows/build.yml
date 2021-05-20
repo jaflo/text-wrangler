@@ -1,0 +1,27 @@
+env: {}
+
+name: Build website
+on:
+    push:
+        branches: [master]
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - run: npm install
+            - run: npm run build
+            - name: Update cache buster
+              run: sed -i 's/GITHUB_SHA/${{ github.sha }}/g' public/index.html
+            - uses: webfactory/ssh-agent@v0.4.1
+              with:
+                  ssh-private-key: ${{ secrets.DEPLOY_KEY }}
+            - uses: JamesIves/github-pages-deploy-action@3.7.1
+              with:
+                  SSH: true
+                  FOLDER: public # copy this...
+                  REPOSITORY_NAME: jaflo/microsites
+                  BRANCH: master
+                  TARGET_FOLDER: wrangler # ...here
+                  CLEAN: true
+                  PRESERVE: true
